@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static Web Mindmap Viewer</title>
+  
+  <!-- Offline Vendored Libraries -->
+  <script src="vendor/d3.v7.min.js"></script>
+  <script src="vendor/js-yaml.min.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/mindmap.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="brand">
+          <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="6" r="3"/>
+            <circle cx="18" cy="18" r="3"/>
+            <path d="M9 12h3m0 0l3-4.5m-3 4.5l3 4.5"/>
+          </svg>
+          <span class="brand-name">Mindmap Viewer</span>
+        </div>
+        <div class="map-meta">
+          <span class="map-title" id="map-title">No Map Loaded</span>
+          <span class="badge badge-node-count" id="node-count-badge" style="display: none;">0 nodes</span>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <!-- Search Bar -->
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="search-input" 
+            class="search-input" 
+            placeholder="Search topics, tags, notes... (Press '/')"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <span class="search-badge" id="search-count-badge" style="display: none;">0 matches</span>
+          <button class="btn-clear-search" id="btn-clear-search" style="display: none;" title="Clear search">✕</button>
+          <kbd class="search-kbd">/</kbd>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <input type="file" id="file-input" class="visually-hidden" accept=".json,.yaml,.yml,application/json,text/yaml">
+        <button class="btn btn-primary" id="btn-open-file" title="Open JSON or YAML file">
+          <span class="btn-icon">📁</span> Open File
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Viewport Area -->
+    <main class="app-main">
+      <!-- SVG Mindmap Canvas -->
+      <div id="canvas-container" class="canvas-container"></div>
+
+      <!-- Floating Canvas Toolbar -->
+      <div class="canvas-toolbar">
+        <button class="toolbar-btn" id="btn-zoom-in" title="Zoom In (+)">+</button>
+        <button class="toolbar-btn" id="btn-zoom-out" title="Zoom Out (−)">−</button>
+        <button class="toolbar-btn" id="btn-fit-view" title="Fit to Screen (Center View)">⛶</button>
+        <div class="toolbar-divider"></div>
+        <button class="toolbar-btn" id="btn-expand-all" title="Expand All Branches">⤢</button>
+        <button class="toolbar-btn" id="btn-collapse-all" title="Collapse to Root">⤡</button>
+      </div>
+
+      <!-- Empty State / Drag-and-Drop Zone -->
+      <div id="dropzone" class="dropzone-overlay">
+        <div class="dropzone-card">
+          <div class="dropzone-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="8" y="12" width="48" height="40" rx="8" stroke-dasharray="4 4"/>
+              <path d="M32 24v16m-8-8l8-8 8 8"/>
+            </svg>
+          </div>
+          <h2>Open a Mindmap</h2>
+          <p class="dropzone-subtitle">Drag & drop your <strong>JSON</strong> or <strong>YAML</strong> mindmap file here</p>
+          <div class="dropzone-actions">
+            <button class="btn btn-secondary" onclick="document.getElementById('file-input').click()">
+              Browse Local File
+            </button>
+            <span class="dropzone-or">or</span>
+            <button class="btn btn-accent" id="btn-load-sample">
+              Load Sample Mindmap
+            </button>
+          </div>
+          <div class="dropzone-footer">
+            <span>Client-side only • 100% Offline • Supports arbitrary custom attributes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Details Panel -->
+      <aside id="details-panel" class="details-panel"></aside>
+    </main>
+
+    <!-- Error Toast Notification -->
+    <div id="error-toast" class="toast hidden">
+      <div class="toast-content">
+        <span class="toast-icon">⚠️</span>
+        <span id="toast-message" class="toast-text"></span>
+      </div>
+      <button id="toast-close" class="toast-close">✕</button>
+    </div>
+  </div>
+
+  <!-- Main ES6 Application Entrypoint -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

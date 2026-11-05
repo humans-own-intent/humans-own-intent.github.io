@@ -1,0 +1,170 @@
+/**
+ * mindmap.css - D3.js SVG Hierarchy, Node Cards, Badges, and Transitions
+ */
+
+.mindmap-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  user-select: none;
+}
+
+.mindmap-svg:active {
+  cursor: grabbing;
+}
+
+/* Links / Connections */
+.mindmap-link {
+  fill: none;
+  stroke: #475569;
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  transition: stroke 0.25s ease, stroke-width 0.25s ease, opacity 0.25s ease;
+}
+
+.mindmap-link.depth-0 {
+  stroke: #64748b;
+  stroke-width: 2.2px;
+}
+
+.mindmap-link.highlighted {
+  stroke: var(--color-primary);
+  stroke-width: 2.5px;
+  opacity: 1;
+}
+
+/* Node Cards */
+.mindmap-node {
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mindmap-node .node-card {
+  fill: #1e293b;
+  stroke: #334155;
+  stroke-width: 1.5px;
+  filter: url(#card-shadow);
+  transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+}
+
+.mindmap-node:hover .node-card {
+  stroke: #64748b;
+  fill: #243248;
+}
+
+/* Depth Color Accents */
+.mindmap-node.root-node .node-card {
+  fill: #1e3a5f;
+  stroke: #38bdf8;
+  stroke-width: 2px;
+}
+
+.mindmap-node.root-node .node-label {
+  font-weight: 700;
+  fill: #f8fafc;
+  font-size: 14px;
+}
+
+.mindmap-node.depth-1 .node-card {
+  stroke: #475569;
+}
+
+/* Node Label */
+.mindmap-node .node-label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  fill: #e2e8f0;
+  pointer-events: all;
+}
+
+/* Status Indicator Dots */
+.node-status-dot {
+  fill: var(--text-muted);
+}
+
+.node-status-dot.status-completed {
+  fill: var(--color-success);
+}
+
+.node-status-dot.status-in-progress {
+  fill: var(--color-warning);
+}
+
+.node-status-dot.status-active {
+  fill: var(--color-primary);
+}
+
+.node-status-dot.status-planned {
+  fill: #a855f7;
+}
+
+.node-status-dot.status-critical {
+  fill: var(--color-danger);
+}
+
+/* Child Count / Collapse Toggle Badges */
+.node-badge {
+  cursor: pointer;
+}
+
+.badge-bg {
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.badge-bg.badge-collapsed {
+  fill: rgba(56, 189, 248, 0.2);
+  stroke: rgba(56, 189, 248, 0.5);
+  stroke-width: 1px;
+}
+
+.badge-bg.badge-expanded {
+  fill: rgba(71, 85, 105, 0.4);
+  stroke: rgba(71, 85, 105, 0.6);
+  stroke-width: 1px;
+}
+
+.node-badge:hover .badge-bg.badge-collapsed {
+  fill: rgba(56, 189, 248, 0.35);
+  stroke: var(--color-primary);
+}
+
+.node-badge:hover .badge-bg.badge-expanded {
+  fill: rgba(71, 85, 105, 0.8);
+}
+
+.badge-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--text-primary);
+  pointer-events: none;
+}
+
+.badge-bg.badge-collapsed + .badge-text {
+  fill: var(--color-primary);
+}
+
+/* Selected State */
+.mindmap-node.is-selected .node-card {
+  stroke: var(--color-primary);
+  stroke-width: 2.2px;
+  fill: #1e3a5f;
+}
+
+/* Search Highlight & Dimmed States */
+.mindmap-node.is-highlighted .node-card {
+  stroke: #fbbf24;
+  stroke-width: 2.5px;
+  fill: #2d2a1b;
+}
+
+.mindmap-node.is-highlighted .node-label {
+  fill: #fef08a;
+  font-weight: 700;
+}
+
+.mindmap-node.is-dimmed {
+  opacity: 0.28;
+}

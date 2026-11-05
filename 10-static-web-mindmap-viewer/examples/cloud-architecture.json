@@ -1,0 +1,46 @@
+{
+  "title": "Cloud Infrastructure Architecture",
+  "description": "Multi-region cloud deployment and microservices strategy.",
+  "status": "active",
+  "tags": ["architecture", "cloud", "production"],
+  "owner": "Platform Architecture Team",
+  "children": [
+    {
+      "title": "Edge & Networking",
+      "notes": "Global CDN and DDoS mitigation layer.",
+      "status": "in-progress",
+      "tags": ["network", "security"],
+      "children": [
+        {
+          "title": "Cloudflare Anycast CDN",
+          "notes": "Global routing and TLS termination.",
+          "status": "completed",
+          "cacheHitRatio": "94.2%"
+        },
+        {
+          "title": "API Gateway (Kong)",
+          "status": "in-progress",
+          "rateLimit": "10000 req/min"
+        }
+      ]
+    },
+    {
+      "title": "Microservices Tier",
+      "notes": "Containerized workloads on Kubernetes.",
+      "status": "completed",
+      "children": [
+        {
+          "title": "Identity & Access",
+          "notes": "OAuth2 / OIDC auth service.",
+          "status": "completed",
+          "mfaEnforced": true
+        },
+        {
+          "title": "Order Processing",
+          "status": "in-progress",
+          "throughput": "3500 tps"
+        }
+      ]
+    }
+  ]
+}

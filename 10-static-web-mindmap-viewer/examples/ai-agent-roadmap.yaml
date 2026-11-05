@@ -1,0 +1,40 @@
+title: AI Agent Platform Roadmap
+description: Autonomous developer agents with tool execution and memory systems.
+status: active
+tags:
+  - ai
+  - roadmap
+  - agents
+owner: AI Core Team
+nodes:
+  - label: Core Reasoning Engine
+    notes: LLM orchestration and multi-agent coordination.
+    status: completed
+    tags: [llm, reasoning]
+    nodes:
+      - label: Planner Agent
+        status: completed
+        contextWindow: 128k
+      - label: Critique & Reflection
+        status: in-progress
+        heuristic: self-consistency
+  - label: Tool Execution Sandbox
+    notes: Secure isolation for terminal, file IO, and external APIs.
+    status: in-progress
+    nodes:
+      - label: Containerized Runner
+        status: completed
+        isolation: Firecracker MicroVM
+      - label: Network Proxy Guardrails
+        status: planned
+        allowlistOnly: true
+  - label: Memory & Persistence
+    notes: Episodic and semantic vector retrieval.
+    status: planned
+    nodes:
+      - label: Vector Embeddings
+        status: planned
+        dim: 1536
+      - label: Conversation Checkpoints
+        status: in-progress
+        backend: SQLite
