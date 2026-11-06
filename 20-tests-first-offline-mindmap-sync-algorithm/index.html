@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline-First Mindmap Sync Algorithm</title>
+    <script type="module" crossorigin src="/assets/index-2_oLpXvH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bcmn5p7u.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand-title">
+        <h1>🧠 Offline-First Mindmap Sync</h1>
+        <p>3 Side-by-Side Clients with Independent Online/Offline Simulation</p>
+      </div>
+
+      <div class="server-stats" id="server-stats-bar">
+        <div class="stat-pill">
+          Server Revision: <strong id="server-rev-val">0</strong>
+        </div>
+        <div class="stat-pill">
+          Committed Ops: <strong id="server-ops-val">0</strong>
+        </div>
+      </div>
+
+      <div class="global-actions">
+        <button id="btn-seed" class="btn btn-secondary">
+          🌱 Seed Sample Topics
+        </button>
+        <button id="btn-sync-all" class="btn btn-primary">
+          ⚡ Sync All Online
+        </button>
+      </div>
+    </header>
+
+    <main class="panels-container">
+      <!-- Client 1: Alice -->
+      <section class="client-panel client-1" id="panel-client-1">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <span class="client-name">👩‍💻 Client 1 (Alice)</span>
+            <div class="toggle-control">
+              <span class="status-badge online" id="status-badge-1">Online</span>
+              <label class="switch">
+                <input type="checkbox" id="toggle-online-1" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="panel-meta-row">
+            <span id="stats-1">Rev: 0 | Lamport: 0</span>
+            <span class="uncommitted-badge clean" id="uncommitted-badge-1">0 uncommitted</span>
+            <button class="btn btn-secondary" id="btn-sync-1" style="padding: 3px 8px; font-size: 0.75rem;">Sync Now</button>
+          </div>
+        </div>
+        <div class="offline-banner">Disconnected from server. Edits remain purely local.</div>
+        <div class="tree-viewport" id="tree-container-1"></div>
+        <div class="activity-log" id="log-1">
+          <div class="log-entry">Client initialized</div>
+        </div>
+      </section>
+
+      <!-- Client 2: Bob -->
+      <section class="client-panel client-2" id="panel-client-2">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <span class="client-name">👨‍💻 Client 2 (Bob)</span>
+            <div class="toggle-control">
+              <span class="status-badge online" id="status-badge-2">Online</span>
+              <label class="switch">
+                <input type="checkbox" id="toggle-online-2" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="panel-meta-row">
+            <span id="stats-2">Rev: 0 | Lamport: 0</span>
+            <span class="uncommitted-badge clean" id="uncommitted-badge-2">0 uncommitted</span>
+            <button class="btn btn-secondary" id="btn-sync-2" style="padding: 3px 8px; font-size: 0.75rem;">Sync Now</button>
+          </div>
+        </div>
+        <div class="offline-banner">Disconnected from server. Edits remain purely local.</div>
+        <div class="tree-viewport" id="tree-container-2"></div>
+        <div class="activity-log" id="log-2">
+          <div class="log-entry">Client initialized</div>
+        </div>
+      </section>
+
+      <!-- Client 3: Charlie -->
+      <section class="client-panel client-3" id="panel-client-3">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <span class="client-name">🧑‍💻 Client 3 (Charlie)</span>
+            <div class="toggle-control">
+              <span class="status-badge online" id="status-badge-3">Online</span>
+              <label class="switch">
+                <input type="checkbox" id="toggle-online-3" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="panel-meta-row">
+            <span id="stats-3">Rev: 0 | Lamport: 0</span>
+            <span class="uncommitted-badge clean" id="uncommitted-badge-3">0 uncommitted</span>
+            <button class="btn btn-secondary" id="btn-sync-3" style="padding: 3px 8px; font-size: 0.75rem;">Sync Now</button>
+          </div>
+        </div>
+        <div class="offline-banner">Disconnected from server. Edits remain purely local.</div>
+        <div class="tree-viewport" id="tree-container-3"></div>
+        <div class="activity-log" id="log-3">
+          <div class="log-entry">Client initialized</div>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>
